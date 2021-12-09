@@ -18,10 +18,12 @@ export default class Engine {
 
     constructor() {
         this.board = []
-        for (const unserializedRow of unserializedBoard) {
+        for (let i = 0; i < unserializedBoard.length; i++) {
+            const unserializedRow = unserializedBoard[i]
             const row = []
-            for (const pieceString of unserializedRow) {
-                const piece = PieceFactory.create(pieceString)
+            for (let j = 0; j < unserializedRow.length; j++) {
+                const pieceString = unserializedRow[j]
+                const piece = PieceFactory.create(pieceString, i, j)
                 row.push(piece)
             }
             this.board.push(row)
