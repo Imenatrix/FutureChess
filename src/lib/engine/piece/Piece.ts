@@ -3,9 +3,13 @@ export default class Piece {
     char = 'x'
 
     color : string
+    i : number
+    j : number
 
-    constructor(color) {
+    constructor(color : string, i : number, j : number) {
         this.color = color
+        this.i = i
+        this.j = j
     }
 
     toString() {
