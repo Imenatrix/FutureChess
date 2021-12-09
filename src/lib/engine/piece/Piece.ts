@@ -5,9 +5,11 @@ export default class Piece {
     color : string
     i : number
     j : number
+    board : Array<Array<Piece>>
 
-    constructor(color : string, i : number, j : number) {
+    constructor(color : string, board : Array<Array<Piece>>, i : number, j : number) {
         this.color = color
+        this.board = board
         this.i = i
         this.j = j
     }
