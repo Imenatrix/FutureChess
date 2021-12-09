@@ -14,6 +14,11 @@ export default class Piece {
         this.j = j
     }
 
+    move(i : number, j :  number) {
+        this.board[this.i][this.j] = undefined
+        this.board[i][j] = this
+    }
+
     toString() {
         return (this.color == 'white' ? 'w' : 'b') + this.char
     }
