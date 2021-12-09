@@ -20,13 +20,13 @@ const colors = {
 }
 
 export default class PieceFactory {
-    static create(pieceString) {
+    static create(pieceString : string, i : number, j : number) {
         const colorChar = pieceString[0]
         const pieceChar = pieceString[1]
         if (pieceChar in pieces && colorChar in colors) {
             const piece = pieces[pieceChar]
             const color = colors[colorChar]
-            return new piece(color)
+            return new piece(color, i, j)
         }
     }
 }
