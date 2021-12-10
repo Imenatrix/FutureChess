@@ -1,18 +1,27 @@
 <script type="typescript">
     import Piece from '$lib/components/Piece.svelte'
+    import type { default as VirtualPiece } from '$lib/engine/piece/Piece'
 
     export let boardState
+
+    let selectedPiece : VirtualPiece
 
     function handleMouseUp(event : MouseEvent) {
         console.log(event.currentTarget)
     }
+
+    function handlePieceSelection(event : CustomEvent) {
+        selectedPiece = event.detail
+        console.log(selectedPiece)
+    }
+
 </script>
 <div class='container'>
     {#each [...Array(8).keys()] as i}
         {#each [...Array(8).keys()] as j}
             <div class='square white' class:black={((i + j) % 2 != 0)} on:mouseup={handleMouseUp}>
                 {#if boardState[i][j]}
-                    <Piece piece={boardState[i][j]}/>
+                    <Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
                 {/if}
             </div>
         {/each}

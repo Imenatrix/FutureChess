@@ -1,9 +1,11 @@
 <script type="typescript">
 
     import type Piece from '$lib/engine/piece/Piece';
-    import { onMount } from 'svelte';
+    import { createEventDispatcher, onMount } from 'svelte';
 
     export let piece : Piece
+
+    const dispatch = createEventDispatcher()
 
     let container : HTMLElement
  
@@ -25,6 +27,7 @@
     })
 
     function handleMouseDown(event : MouseEvent) {
+        dispatch('select', piece)
         container.style.pointerEvents = 'none'
         container.style.position = 'fixed'
         container.style.zIndex = '1'
