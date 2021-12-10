@@ -1,6 +1,5 @@
 <script>
     export let boardState
-    console.log(boardState)
 </script>
 <div class='container'>
     {#each [...Array(8).keys()] as i}
