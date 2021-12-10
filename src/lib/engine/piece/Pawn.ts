@@ -21,7 +21,6 @@ export default class Pawn extends Piece {
         if (di == this.direction && dj == 0) {
             super.move(i, j)
         }
-        console.log(this.color)
     }
 
 }
