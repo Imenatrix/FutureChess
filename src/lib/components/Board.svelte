@@ -7,8 +7,9 @@
 
     let selectedPiece : VirtualPiece
 
-    function handleMouseUp(event : MouseEvent) {
-        console.log(event.currentTarget)
+    function handleSquareSelection(event : CustomEvent) {
+        const {i, j} = event.detail
+        console.log(i + ' ' + j)
     }
 
     function handlePieceSelection(event : CustomEvent) {
@@ -20,7 +21,7 @@
 <div class='container'>
     {#each [...Array(8).keys()] as i}
         {#each [...Array(8).keys()] as j}
-            <Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:mouseup={handleMouseUp}>
+            <Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:select={handleSquareSelection}>
                 {#if boardState[i][j]}
                     <Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
                 {/if}
