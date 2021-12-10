@@ -11,6 +11,7 @@
         const {i, j} = event.detail
         selectedPiece.move(i, j)
         boardState = boardState
+        selectedPiece = null
     }
 
     function handlePieceSelection(event : CustomEvent) {
