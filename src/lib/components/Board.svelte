@@ -15,7 +15,6 @@
 
     function handlePieceSelection(event : CustomEvent) {
         selectedPiece = event.detail
-        console.log(selectedPiece)
     }
 
 </script>
