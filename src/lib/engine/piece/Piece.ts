@@ -16,7 +16,9 @@ export default class Piece {
 
     move(i : number, j :  number) {
         this.board[this.i][this.j] = undefined
-        this.board[i][j] = this
+        this.i = i
+        this.j = j
+        this.board[this.i][this.j] = this
     }
 
     toString() {
