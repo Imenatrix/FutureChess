@@ -10,20 +10,27 @@
     let container : HTMLElement
  
     onMount(() => {
-        document.addEventListener('mousemove', (event : MouseEvent) => {
+        const mousemove = (event : MouseEvent) => {
             if (container.style.position == 'fixed') {
                 container.style.top = event.pageY - 25 + 'px'
                 container.style.left = event.pageX - 25 + 'px'
                 window.getSelection().removeAllRanges()
             }
-        })
-        document.addEventListener('mouseup', () => {
+        }
+        const mouseup = () => {
             container.style.pointerEvents = 'auto'
             container.style.position = 'absolute'
             container.style.top = '25%'
             container.style.left = '25%'
             container.style.zIndex = '0'
-        })
+        }
+        document.addEventListener('mousemove', mousemove)
+        document.addEventListener('mouseup', mouseup)
+
+        return () => {
+            document.removeEventListener('mousemove', mousemove)
+            document.removeEventListener('mouseup', mouseup)
+        }
     })
 
     function handleMouseDown(event : MouseEvent) {
