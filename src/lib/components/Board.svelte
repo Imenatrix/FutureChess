@@ -1,4 +1,6 @@
 <script>
+    import Piece from '$lib/components/Piece.svelte'
+
     export let boardState
 </script>
 <div class='container'>
@@ -6,7 +8,7 @@
         {#each [...Array(8).keys()] as j}
             <div class='square white' class:black={((i + j) % 2 != 0)}>
                 {#if boardState[i][j]}
-                    <div class='piece'>{boardState[i][j]}</div>
+                    <Piece piece={boardState[i][j]}/>
                 {/if}
             </div>
         {/each}
@@ -15,9 +17,6 @@
 </div>
 
 <style>
-    .piece {
-        color : gray;
-    }
     .container {
         display: inline-block;
         background-color: red;
@@ -25,11 +24,10 @@
         box-shadow: 0px 0px 20px 5px black;
     }
     .square {
-        display: inline-flex;
+        position : relative;
+        display: inline-block;
         width: 100px;
         height: 100px;
-        justify-content: center;
-        align-items: center;
     }
     .white {
         background-color: white;
