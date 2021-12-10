@@ -24,11 +24,10 @@
     })
 
     function handleMouseDown(event : MouseEvent) {
-        const target = event.target as HTMLElement
-        target.style.position = 'fixed'
-        target.style.zIndex = '1'
-        target.style.top = event.pageY - 25 + 'px'
-        target.style.left = event.pageX - 25 + 'px'
+        container.style.position = 'fixed'
+        container.style.zIndex = '1'
+        container.style.top = event.pageY - 25 + 'px'
+        container.style.left = event.pageX - 25 + 'px'
     }
 
 </script>
