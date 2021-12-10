@@ -8,10 +8,10 @@ export default class Pawn extends Piece {
     constructor(color : string, board : Array<Array<Piece>>, i : number, j : number) {
         super(color, board, i, j)
         if (color == 'white') {
-            this.direction = -1
+            this.direction = 1
         }
         else {
-            this.direction = 1
+            this.direction = -1
         }
     }
 
@@ -21,6 +21,7 @@ export default class Pawn extends Piece {
         if (di == this.direction && dj == 0) {
             super.move(i, j)
         }
+        console.log(this.color)
     }
 
 }
