@@ -19,6 +19,7 @@ export default class Pawn extends Piece {
         const di = this.i - i
         const dj = this.j - j
         if (di == this.direction && dj == 0) {
+            if (this.board[i][j]) return
             super.move(i, j)
         }
     }
