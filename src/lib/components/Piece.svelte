@@ -12,6 +12,7 @@
             if (container.style.position == 'fixed') {
                 container.style.top = event.pageY - 25 + 'px'
                 container.style.left = event.pageX - 25 + 'px'
+                window.getSelection().removeAllRanges()
             }
         })
         document.addEventListener('mouseup', () => {
