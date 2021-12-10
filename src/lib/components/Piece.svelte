@@ -16,6 +16,7 @@
             }
         })
         document.addEventListener('mouseup', () => {
+            container.style.pointerEvents = 'auto'
             container.style.position = 'absolute'
             container.style.top = '25%'
             container.style.left = '25%'
@@ -24,6 +25,7 @@
     })
 
     function handleMouseDown(event : MouseEvent) {
+        container.style.pointerEvents = 'none'
         container.style.position = 'fixed'
         container.style.zIndex = '1'
         container.style.top = event.pageY - 25 + 'px'
