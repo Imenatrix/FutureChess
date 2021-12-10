@@ -1,9 +1,13 @@
 <script>
     import Board from '$lib/components/Board.svelte'
+    import Engine from '$lib/engine/Engine'
+
+    const engine = new Engine()
+    const boardState = engine.board
 </script>
 
 <div class="container">
-    <Board/>
+    <Board {boardState}/>
 </div>
 
 <style>
