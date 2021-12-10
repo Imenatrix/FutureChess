@@ -1,5 +1,9 @@
 <script type="typescript">
+
     export let color : 'white' | 'black' = 'white'
+    export let i : number
+    export let j : number
+    
 </script>
 
 <div class='square {color}' on:mouseup>

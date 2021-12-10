@@ -20,7 +20,7 @@
 <div class='container'>
     {#each [...Array(8).keys()] as i}
         {#each [...Array(8).keys()] as j}
-            <Square color={(i + j) % 2 == 0 ? 'white' : 'black'} on:mouseup={handleMouseUp}>
+            <Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:mouseup={handleMouseUp}>
                 {#if boardState[i][j]}
                     <Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
                 {/if}
