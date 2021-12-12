@@ -22,6 +22,12 @@ export default class Pawn extends Piece {
             if (this.board[i][j]) return
             super.move(i, j)
         }
+		else if(di == this.direction && Math.abs(dj) == 1) {
+			if (this.board[i][j]) {
+				if (this.board[i][j]?.color == this.color) return
+				super.move(i, j)
+			}
+		}
     }
 
 }
