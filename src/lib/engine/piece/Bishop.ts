@@ -11,8 +11,10 @@ export default class Bishop extends Piece{
         const sj = Math.sign(dj)
         const mi = Math.abs(di)
         const mj = Math.abs(dj)
+
+		if (this.board[i][j]?.color == this.color) return
         if (mj == mi) {
-			for (let x = Math.abs(si); x <= mi; x++) {
+			for (let x = Math.abs(si); x < mi; x++) {
 				const sx = x * si
 				const sy = x * sj
 				if (this.board[this.i + sx][this.j + sy]) return
