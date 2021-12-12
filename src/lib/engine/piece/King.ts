@@ -5,10 +5,33 @@ export default class King extends Piece{
     char = 'k'
 
     move(i: number, j: number) {
-        const mi = Math.abs(this.i - i)
-        const mj = Math.abs(this.j - j)
+        const di = i - this.i
+        const dj = j - this.j
+        const si = Math.sign(di)
+        const sj = Math.sign(dj)
+        const mi = Math.abs(di)
+        const mj = Math.abs(dj)
         if (Math.max(mi, mj) == 1) {
-            super.move(i, j)
+            if (Math.min(mi, mj) == 0) { 
+				for (let x = Math.abs(si); x <= mi; x++) {
+					for (let y = Math.abs(sj); y <= mj; y++) {
+						const sx = x * si
+						const sy = y * sj
+						if (this.board[this.i + sx][this.j + sy]) return
+					}
+				}
+			}
+			else if (mi == mj) {
+				for (let x = Math.abs(si); x <= mi; x++) {
+					const sx = x * si
+					const sy = x * sj
+					if (this.board[this.i + sx][this.j + sy]) return
+				}
+			}
+			else {
+				return
+			}
+			super.move(i, j)
         }
     }
 
