@@ -11,18 +11,23 @@ export default class King extends Piece{
         const sj = Math.sign(dj)
         const mi = Math.abs(di)
         const mj = Math.abs(dj)
+
+		if (this.board[i][j]?.color == this.color) return
         if (Math.max(mi, mj) == 1) {
-            if (Math.min(mi, mj) == 0) { 
-				for (let x = Math.abs(si); x <= mi; x++) {
-					for (let y = Math.abs(sj); y <= mj; y++) {
-						const sx = x * si
-						const sy = y * sj
-						if (this.board[this.i + sx][this.j + sy]) return
-					}
+            if (mj == 0) {
+				for (let x = Math.abs(si); x < mi; x++) {
+					const sx = x * si
+					if (this.board[this.i + sx][this.j]) return
+				}
+			}
+			else if (mi == 0) {
+				for (let y = Math.abs(sj); y < mj; y++) {
+					const sy = y * sj
+					if (this.board[this.i][this.j + sy]) return
 				}
 			}
 			else if (mi == mj) {
-				for (let x = Math.abs(si); x <= mi; x++) {
+				for (let x = Math.abs(si); x < mi; x++) {
 					const sx = x * si
 					const sy = x * sj
 					if (this.board[this.i + sx][this.j + sy]) return
