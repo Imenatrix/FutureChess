@@ -26,7 +26,7 @@
 	{#each [...Array(8).keys()] as i}
 		{#each [...Array(8).keys()] as j}
 			<Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:select={handleSquareSelection}>
-				{#if (selectedPiece ? selectedPiece.availableMoves() : []).includes(i + ' ' + j)}
+				{#if selectedPiece?.availableMoves()[i][j]}
 					<Target/>
 				{/if}
 				{#if boardState[i][j]}
