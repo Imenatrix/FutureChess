@@ -40,4 +40,17 @@ export default class King extends Piece{
 		}
 	}
 
+	canMove(i : number, j : number) {
+		const squaresUnderAttack = this.board.map(
+			row => row.filter(piece => piece)
+					  .filter(piece => piece.color != this.color)
+					  .map(piece => piece.squaresUnderAttack())
+					  .flat()
+		).flat()
+		if (squaresUnderAttack.includes(i + ' ' + j)) {
+			return false
+		}
+		return super.canMove(i, j)
+	}
+
 }
