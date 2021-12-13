@@ -10,9 +10,11 @@
 
 	function handleSquareSelection(event : CustomEvent) {
 		const {i, j} = event.detail
-		selectedPiece.move(i, j)
-		boardState = boardState
-		selectedPiece = null
+		const moved = selectedPiece.move(i, j)
+		if (moved) {
+			selectedPiece = null
+			boardState = boardState
+		}
 	}
 
 	function handlePieceSelection(event : CustomEvent) {
