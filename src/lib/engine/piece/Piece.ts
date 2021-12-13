@@ -14,11 +14,32 @@ export default class Piece {
 		this.j = j
 	}
 
+	availableMoves() {
+		const moves = []
+		for (let i = 0; i < this.board.length; i++) {
+			for (let j = 0; j < this.board[i].length; j++) {
+				if (this.canMove(i, j)) {
+					moves.push({
+						i : i,
+						j : j
+					})
+				}
+			}
+		}
+		return moves
+	}
+
+	canMove(i : number, j : number) {
+		return false
+	}
+
 	move(i : number, j :  number) {
-		this.board[this.i][this.j] = undefined
-		this.i = i
-		this.j = j
-		this.board[this.i][this.j] = this
+		if (this.canMove(i, j)) {
+			this.board[this.i][this.j] = undefined
+			this.i = i
+			this.j = j
+			this.board[this.i][this.j] = this
+		}
 	}
 
 	toString() {
