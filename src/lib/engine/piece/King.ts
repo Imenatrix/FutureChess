@@ -44,10 +44,10 @@ export default class King extends Piece{
 		const squaresUnderAttack = this.board.map(
 			row => row.filter(piece => piece)
 					  .filter(piece => piece.color != this.color)
-					  .map(piece => piece.squaresUnderAttack())
+					  .map(piece => piece.canAttack(i, j))
 					  .flat()
 		).flat()
-		if (squaresUnderAttack.includes(i + ' ' + j)) {
+		if (squaresUnderAttack.includes(true)) {
 			return false
 		}
 		return super.canMove(i, j)
