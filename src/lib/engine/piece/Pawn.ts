@@ -19,6 +19,8 @@ export default class Pawn extends Piece {
 	canMove(i : number, j : number) {
 		const di = i - this.i
 		const dj = j - this.j
+
+		if (i == this.i && j == this.j) return false
 		if (!this.moved && di == this.direction * 2 && dj == 0) {
 			if (this.board[i][j]) return false
 		}
@@ -37,7 +39,9 @@ export default class Pawn extends Piece {
 
 	move(i: number, j: number) {
 		super.move(i, j)
-		this.moved = true
+		if (this.canMove(i, j)) {
+			this.moved = true
+		}
 	}
 
 }

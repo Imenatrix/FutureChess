@@ -12,6 +12,7 @@ export default class King extends Piece{
 		const mi = Math.abs(di)
 		const mj = Math.abs(dj)
 
+		if (i == this.i && j == this.j) return false
 		if (this.board[i][j]?.color == this.color) return false
 		if (Math.max(mi, mj) == 1) {
 			if (mj == 0) {

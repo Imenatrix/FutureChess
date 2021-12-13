@@ -12,6 +12,7 @@ export default class Rook extends Piece {
 		const mi = Math.abs(di)
 		const mj = Math.abs(dj)
 
+		if (i == this.i && j == this.j) return false
 		if (this.board[i][j]?.color == this.color) return false
 		if (mj == 0) {
 			for (let x = Math.abs(si); x < mi; x++) {
