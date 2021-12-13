@@ -27,9 +27,9 @@ import { createEventDispatcher } from "svelte";
 		height: 100px;
 	}
 	.white {
-		background-color: white;
+		background-color: wheat;
 	}
 	.black {
-		background-color: black;
+		background-color: peru;
 	}
 </style>
