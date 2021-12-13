@@ -1,6 +1,7 @@
 <script type="typescript">
 	import Piece from '$lib/components/Piece.svelte'
-	import Square from '$lib/components/Square.svelte';
+	import Square from '$lib/components/Square.svelte'
+	import Target from '$lib/components/Target.svelte'
 	import type { default as VirtualPiece } from '$lib/engine/piece/Piece'
 
 	export let boardState
@@ -25,6 +26,9 @@
 			<Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:select={handleSquareSelection}>
 				{#if boardState[i][j]}
 					<Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
+				{/if}
+				{#if (selectedPiece ? selectedPiece.availableMoves() : []).includes(i + ' ' + j)}
+					<Target/>
 				{/if}
 			</Square>
 		{/each}
