@@ -36,7 +36,9 @@ export default class Piece {
 			this.i = i
 			this.j = j
 			this.board[this.i][this.j] = this
+			return true
 		}
+		return false
 	}
 
 	toString() {

@@ -38,10 +38,11 @@ export default class Pawn extends Piece {
 	}
 
 	move(i: number, j: number) {
-		super.move(i, j)
-		if (this.canMove(i, j)) {
+		const moved = super.move(i, j)
+		if (!this.moved && moved) {
 			this.moved = true
 		}
+		return moved
 	}
 
 }
