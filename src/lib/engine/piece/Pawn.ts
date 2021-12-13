@@ -21,14 +21,7 @@ export default class Pawn extends Piece {
 		const dj = j - this.j
 
 		if (i == this.i && j == this.j) return false
-		if(di == this.direction && Math.abs(dj) == 1) {
-			return true
-		}
-		else {
-			return false
-		}
-		return true
-
+		return di == this.direction && Math.abs(dj) == 1
 	}
 
 	canMove(i : number, j : number) {
