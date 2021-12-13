@@ -15,19 +15,32 @@ export default class Piece {
 	}
 
 	availableMoves() {
+		return this.filterMoves((i, j) => this.canMove(i, j))
+	}
+
+	squaresUnderAttack() {
+		return this.filterMoves((i , j) => this.canAttack(i, j))
+	}
+
+	filterMoves(filter : (i : number, j : number) => boolean) {
 		const moves = []
 		for (let i = 0; i < this.board.length; i++) {
 			for (let j = 0; j < this.board[i].length; j++) {
-				if (this.canMove(i, j)) {
+				if (filter(i, j)) {
 					moves.push(i + ' ' + j)
 				}
 			}
 		}
 		return moves
+
 	}
 
 	canMove(i : number, j : number) {
 		return false
+	}
+
+	canAttack(i : number, j : number) {
+		return this.canMove(i, j)
 	}
 
 	move(i : number, j :  number) {
