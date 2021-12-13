@@ -36,7 +36,6 @@ export default class Piece {
 	}
 
 	canMove(i : number, j : number) {
-		if (i == this.i && j == this.j) return false
 		if (this.board[i][j]?.color == this.color) return false
 		return this.canAttack(i, j)
 	}

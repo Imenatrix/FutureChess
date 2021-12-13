@@ -12,6 +12,7 @@ export default class Bishop extends Piece{
 		const mi = Math.abs(di)
 		const mj = Math.abs(dj)
 
+		if (i == this.i && j == this.j) return false
 		if (mj == mi) {
 			for (let x = Math.abs(si); x < mi; x++) {
 				const sx = x * si
