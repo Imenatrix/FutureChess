@@ -4,7 +4,7 @@ export default class Queen extends Piece {
 
 	char = 'q'
 
-	canMove(i : number, j : number) {
+	canAttack(i : number, j : number) {
 		const di = i - this.i
 		const dj = j - this.j
 		const si = Math.sign(di)
@@ -12,8 +12,6 @@ export default class Queen extends Piece {
 		const mi = Math.abs(di)
 		const mj = Math.abs(dj)
 
-		if (i == this.i && j == this.j) return false
-		if (this.board[i][j]?.color == this.color) return false
 		if (mj == 0) {
 			for (let x = Math.abs(si); x < mi; x++) {
 				const sx = x * si
