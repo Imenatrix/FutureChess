@@ -19,10 +19,7 @@ export default class Piece {
 		for (let i = 0; i < this.board.length; i++) {
 			for (let j = 0; j < this.board[i].length; j++) {
 				if (this.canMove(i, j)) {
-					moves.push({
-						i : i,
-						j : j
-					})
+					moves.push(i + ' ' + j)
 				}
 			}
 		}
