@@ -4,7 +4,7 @@ export default class King extends Piece{
 
 	char = 'k'
 
-	move(i: number, j: number) {
+	canMove(i : number, j : number) {
 		const di = i - this.i
 		const dj = j - this.j
 		const si = Math.sign(di)
@@ -12,31 +12,31 @@ export default class King extends Piece{
 		const mi = Math.abs(di)
 		const mj = Math.abs(dj)
 
-		if (this.board[i][j]?.color == this.color) return
+		if (this.board[i][j]?.color == this.color) return false
 		if (Math.max(mi, mj) == 1) {
 			if (mj == 0) {
 				for (let x = Math.abs(si); x < mi; x++) {
 					const sx = x * si
-					if (this.board[this.i + sx][this.j]) return
+					if (this.board[this.i + sx][this.j]) return false
 				}
 			}
 			else if (mi == 0) {
 				for (let y = Math.abs(sj); y < mj; y++) {
 					const sy = y * sj
-					if (this.board[this.i][this.j + sy]) return
+					if (this.board[this.i][this.j + sy]) return false
 				}
 			}
 			else if (mi == mj) {
 				for (let x = Math.abs(si); x < mi; x++) {
 					const sx = x * si
 					const sy = x * sj
-					if (this.board[this.i + sx][this.j + sy]) return
+					if (this.board[this.i + sx][this.j + sy]) return false
 				}
 			}
 			else {
-				return
+				return false
 			}
-			super.move(i, j)
+			return true
 		}
 	}
 

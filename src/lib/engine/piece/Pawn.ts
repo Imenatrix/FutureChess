@@ -16,22 +16,26 @@ export default class Pawn extends Piece {
 		}
 	}
 
-	move(i: number, j: number) {
+	canMove(i : number, j : number) {
 		const di = i - this.i
 		const dj = j - this.j
 		if (!this.moved && di == this.direction * 2 && dj == 0) {
-			if (this.board[i][j]) return
+			if (this.board[i][j]) return false
 		}
 		else if (di == this.direction && dj == 0) {
-			if (this.board[i][j]) return
+			if (this.board[i][j]) return false
 		}
 		else if(di == this.direction && Math.abs(dj) == 1) {
-				if (!this.board[i][j]) return
-				if (this.board[i][j]?.color == this.color) return
+				if (!this.board[i][j]) return false
+				if (this.board[i][j]?.color == this.color) return false
 		}
 		else {
-			return
+			return false
 		}
+		return true
+	}
+
+	move(i: number, j: number) {
 		super.move(i, j)
 		this.moved = true
 	}
