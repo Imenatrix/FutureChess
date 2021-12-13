@@ -26,9 +26,8 @@ export default class Pawn extends Piece {
 			if (this.board[i][j]) return
 		}
 		else if(di == this.direction && Math.abs(dj) == 1) {
-			if (this.board[i][j]) {
+				if (!this.board[i][j]) return
 				if (this.board[i][j]?.color == this.color) return
-			}
 		}
 		else {
 			return
