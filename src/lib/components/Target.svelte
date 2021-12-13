@@ -2,6 +2,7 @@
 
 <style>
 	.container {
+		position : absolute;
 		background-color : teal;
 		width: 100px;
 		height: 100px;

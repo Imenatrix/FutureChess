@@ -26,11 +26,11 @@
 	{#each [...Array(8).keys()] as i}
 		{#each [...Array(8).keys()] as j}
 			<Square {i} {j} color={(i + j) % 2 == 0 ? 'white' : 'black'} on:select={handleSquareSelection}>
-				{#if boardState[i][j]}
-					<Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
-				{/if}
 				{#if (selectedPiece ? selectedPiece.availableMoves() : []).includes(i + ' ' + j)}
 					<Target/>
+				{/if}
+				{#if boardState[i][j]}
+					<Piece on:select={handlePieceSelection} piece={boardState[i][j]}/>
 				{/if}
 			</Square>
 		{/each}
