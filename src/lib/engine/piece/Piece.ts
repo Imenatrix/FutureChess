@@ -42,6 +42,16 @@ export default class Piece {
 		return false
 	}
 
+	isPositionUnderAttack(i : number, j : number) {
+		const squaresUnderAttack = this.board.map(
+			row => row.filter(piece => piece)
+					  .filter(piece => piece.color != this.color)
+					  .map(piece => piece.canAttack(i, j))
+					  .flat()
+		).flat()
+		return squaresUnderAttack.includes(true)
+	}
+
 	toString() {
 		return (this.color == 'white' ? 'w' : 'b') + this.char
 	}
