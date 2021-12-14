@@ -3,6 +3,7 @@ import Piece from '$lib/engine/piece/Piece'
 export default class Rook extends Piece {
 
 	char = 'r'
+	moved = false
 
 	canAttack(i : number, j : number) {
 		const di = i - this.i
@@ -29,5 +30,13 @@ export default class Rook extends Piece {
 			return false
 		}
 		return true
+	}
+
+	move(i: number, j: number) {
+		const moved = super.move(i, j)
+		if (!this.moved && moved) {
+			this.moved = true
+		}
+		return moved
 	}
 }
