@@ -1,7 +1,7 @@
 import Piece from '$lib/engine/piece/Piece'
 import Rook from './Rook'
 
-export default class King extends Piece{
+export default class King extends Piece {
 
 	char = 'k'
 	moved = false
@@ -94,8 +94,32 @@ export default class King extends Piece{
 		return super.canMove(i, j)
 	}
 
+	moveCastle(i : number, j : number) {
+		if (this.canCastle(i, j)) {
+			const rook = this.board[i][j]
+			const di = i - this.i
+			const dj = j - this.j
+			const si = Math.sign(di)
+			const sj = Math.sign(dj)
+
+			this.board[this.i][this.j] = undefined
+			this.i = this.i + (si * 2)
+			this.j = this.j + (sj * 2)
+			this.board[this.i][this.j] = this
+			this.board[rook.i][rook.j] = undefined
+			rook.i = this.i - si
+			rook.j = this.j - sj
+			this.board[rook.i][rook.j] = rook
+			return true
+		}
+		return false
+	}
+
 	move(i: number, j: number) {
-		const moved = super.move(i, j)
+		let moved = this.moveCastle(i, j)
+		if (!moved) {
+			moved = super.move(i, j)
+		}
 		if (!this.moved && moved) {
 			this.moved = true
 		}
