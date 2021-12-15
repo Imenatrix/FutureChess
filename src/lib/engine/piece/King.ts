@@ -40,7 +40,39 @@ export default class King extends Piece {
 	}
 
 	availableMoves() {
-		return this.board.map((row, i) => row.map((_, j) => this.canMove(i, j) || this.canCastle(i, j)))
+		return this.board.map((row, i) => row.map((_, j) => this.canMove(i, j) || this.canMoveCastle(i, j)))
+	}
+
+	canMoveCastle(i : number, j : number) {
+		{
+			const di = i - this.i
+			const dj = j - this.j
+			const si = Math.sign(di)
+			const sj = Math.sign(dj)
+			const mi = Math.abs(di)
+			const mj = Math.abs(dj)
+			if (!(Math.max(mi, mj) == 2 && Math.min(mi, mj) == 0)) return false
+			i = si == 1 ? this.board.length - 1 : (si == -1 ? 0 : this.i)
+			j = sj == 1 ? this.board[i].length - 1 : (sj == -1 ? 0 : this.j)
+		}
+
+		const di = i - this.i
+		const dj = j - this.j
+		const si = Math.sign(di)
+		const sj = Math.sign(dj)
+		const mi = Math.abs(di)
+		const mj = Math.abs(dj)
+
+		if (Math.min(mi, mj) == 0) {
+			for (let x = Math.abs(si); x <= mi; x++) {
+				for (let y = Math.abs(sj); y <= mj; y++) {
+					const sx = x * si
+					const sy = y * sj
+					if (this.canCastle(this.i + sx, this.j + sy)) return true
+				}
+			}
+		}
+		return false
 	}
 
 	canCastle(i : number, j : number) {
