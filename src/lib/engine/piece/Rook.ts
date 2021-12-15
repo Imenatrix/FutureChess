@@ -14,22 +14,17 @@ export default class Rook extends Piece {
 		const mj = Math.abs(dj)
 
 		if (i == this.i && j == this.j) return false
-		if (mj == 0) {
-			for (let x = Math.abs(si); x < mi; x++) {
-				const sx = x * si
-				if (this.board[this.i + sx][this.j]) return false
+		if (Math.min(mi, mj) == 0) {
+			for (let x = Math.abs(si); x <= mi - Math.abs(si); x++) {
+				for (let y = Math.abs(sj); y <= mj - Math.abs(sj); y++) {
+					const sx = x * si
+					const sy = y * sj
+					if (this.board[this.i + sx][this.j + sy]) return false
+				}
 			}
+			return true
 		}
-		else if (mi == 0) {
-			for (let y = Math.abs(sj); y < mj; y++) {
-				const sy = y * sj
-				if (this.board[this.i][this.j + sy]) return false
-			}
-		}
-		else {
-			return false
-		}
-		return true
+		return false
 	}
 
 	move(i: number, j: number) {
