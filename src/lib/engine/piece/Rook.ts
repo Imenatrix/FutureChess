@@ -6,12 +6,7 @@ export default class Rook extends Piece {
 	moved = false
 
 	canAttack(i : number, j : number) {
-		const di = i - this.i
-		const dj = j - this.j
-		const si = Math.sign(di)
-		const sj = Math.sign(dj)
-		const mi = Math.abs(di)
-		const mj = Math.abs(dj)
+		const {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
 
 		if (i == this.i && j == this.j) return false
 		if (Math.min(mi, mj) == 0) {

@@ -7,12 +7,7 @@ export default class King extends Piece {
 	moved = false
 
 	canAttack(i : number, j : number) {
-		const di = i - this.i
-		const dj = j - this.j
-		const si = Math.sign(di)
-		const sj = Math.sign(dj)
-		const mi = Math.abs(di)
-		const mj = Math.abs(dj)
+		const {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
 
 		if (i == this.i && j == this.j) return false
 		if (Math.max(mi, mj) == 1) {
@@ -44,23 +39,13 @@ export default class King extends Piece {
 	}
 
 	canMoveCastle(i : number, j : number) {
-		let di = i - this.i
-		let dj = j - this.j
-		let si = Math.sign(di)
-		let sj = Math.sign(dj)
-		let mi = Math.abs(di)
-		let mj = Math.abs(dj)
-		
+		let {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
+
 		if (!(Math.max(mi, mj) == 2 && Math.min(mi, mj) == 0)) return false
 		i = si == 1 ? this.board.length - 1 : (si == -1 ? 0 : this.i)
-		j = sj == 1 ? this.board[i].length - 1 : (sj == -1 ? 0 : this.j)
+		j = sj == 1 ? this.board[i].length - 1 : (sj == -1 ? 0 : this.j);
 
-		di = i - this.i
-		dj = j - this.j
-		si = Math.sign(di)
-		sj = Math.sign(dj)
-		mi = Math.abs(di)
-		mj = Math.abs(dj)
+		({si, sj, mi, mj} = this.generateMovementMetrics(i, j))
 
 		if (Math.min(mi, mj) == 0) {
 			for (let x = Math.abs(si); x <= mi; x++) {
@@ -76,12 +61,7 @@ export default class King extends Piece {
 
 	canCastle(i : number, j : number) {
 		const rook = this.board[i][j]
-		const di = i - this.i
-		const dj = j - this.j
-		const si = Math.sign(di)
-		const sj = Math.sign(dj)
-		const mi = Math.abs(di)
-		const mj = Math.abs(dj)
+		const {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
 
 		if (this.moved) return false
 		if (!rook) return false
@@ -120,12 +100,7 @@ export default class King extends Piece {
 	}
 
 	findRook(i : number, j : number) {
-		const di = i - this.i
-		const dj = j - this.j
-		const si = Math.sign(di)
-		const sj = Math.sign(dj)
-		const mi = Math.abs(di)
-		const mj = Math.abs(dj)
+		const {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
 
 		if (Math.min(mi, mj) == 0) {
 			for (let x = Math.abs(si); x <= mi; x++) {
@@ -145,23 +120,16 @@ export default class King extends Piece {
 
 	moveCastle(i : number, j : number) {
 		if (this.canMoveCastle(i, j)) {
-			let di = i - this.i
-			let dj = j - this.j
-			let si = Math.sign(di)
-			let sj = Math.sign(dj)
-			let mi = Math.abs(di)
-			let mj = Math.abs(dj)
+			let {si, sj, mi, mj} = this.generateMovementMetrics(i, j)
+
 			if (!(Math.max(mi, mj) == 2 && Math.min(mi, mj) == 0)) return false
 			i = si == 1 ? this.board.length - 1 : (si == -1 ? 0 : this.i)
 			j = sj == 1 ? this.board[i].length - 1 : (sj == -1 ? 0 : this.j);
 
 			({i, j} = this.findRook(i, j))
-			const rook = this.board[i][j]
+			const rook = this.board[i][j];
 			
-			di = i - this.i
-			dj = j - this.j
-			si = Math.sign(di)
-			sj = Math.sign(dj)
+			({si, sj, mi, mj} = this.generateMovementMetrics(i, j))
 
 			this.board[this.i][this.j] = undefined
 			this.i = this.i + (si * 2)

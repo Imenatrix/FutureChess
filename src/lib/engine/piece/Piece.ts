@@ -14,6 +14,17 @@ export default class Piece {
 		this.j = j
 	}
 
+	generateMovementMetrics(i : number, j : number) {
+		const di = i - this.i
+		const dj = j - this.j
+		const si = Math.sign(di)
+		const sj = Math.sign(dj)
+		const mi = Math.abs(di)
+		const mj = Math.abs(dj)
+		
+		return {di, dj, si, sj, mi, mj}
+	}
+
 	availableMoves() {
 		return this.board.map((row, i) => row.map((_, j) => this.canMove(i, j)))
 	}

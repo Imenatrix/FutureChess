@@ -17,16 +17,14 @@ export default class Pawn extends Piece {
 	}
 
 	canAttack(i : number, j : number) {
-		const di = i - this.i
-		const dj = j - this.j
+		const {di, dj} = this.generateMovementMetrics(i, j)
 
 		if (i == this.i && j == this.j) return false
 		return di == this.direction && Math.abs(dj) == 1
 	}
 
 	canMove(i : number, j : number) {
-		const di = i - this.i
-		const dj = j - this.j
+		const {di, dj} = this.generateMovementMetrics(i, j)
 
 		if (i == this.i && j == this.j) return false
 		if (!this.moved && di == this.direction * 2 && dj == 0) {
