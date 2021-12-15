@@ -90,18 +90,14 @@ export default class King extends Piece {
 		if (rook.color != this.color) return false
 		if (rook.moved) return false
 		if (this.isPositionUnderAttack(i, j)) return false
-		if (mj == 0) {
-			for (let x = Math.abs(si); x < mi; x++) {
-				const sx = x * si
-				if (this.board[this.i + sx][this.j]) return false
-				if (this.isPositionUnderAttack(this.i + sx, this.j)) return false
-			}
-		}
-		else if (mi == 0) {
-			for (let y = Math.abs(sj); y < mj; y++) {
-				const sy = y * sj
-				if (this.board[this.i][this.j + sy]) return false
-				if (this.isPositionUnderAttack(this.i, this.j + sy)) return false
+		if (Math.min(mi, mj) == 0) {
+			for (let x = Math.abs(si); x <= mi - Math.abs(si); x++) {
+				for (let y = Math.abs(sj); y <= mj - Math.abs(sj); y++) {
+					const sx = x * si
+					const sy = y * sj
+					if (this.board[this.i + sx][this.j + sy]) return false
+					if (this.isPositionUnderAttack(this.i + sx, this.j + sy)) return false
+				}
 			}
 		}
 		else if (mi == mj) {
