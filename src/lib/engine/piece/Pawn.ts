@@ -1,4 +1,5 @@
 import Piece from '$lib/engine/piece/Piece'
+import type Engine from '../Engine'
 
 export default class Pawn extends Piece {
 
@@ -6,8 +7,8 @@ export default class Pawn extends Piece {
 	direction : 1 | -1
 	moved = false
 
-	constructor(color : string, board : Array<Array<Piece>>, i : number, j : number) {
-		super(color, board, i, j)
+	constructor(color : string, engine : Engine, i : number, j : number) {
+		super(color, engine, i, j)
 		if (color == 'white') {
 			this.direction = -1
 		}

@@ -5,6 +5,7 @@ import Bishop from '$lib/engine/piece/Bishop'
 import Knight from '$lib/engine/piece/Knight'
 import Rook from '$lib/engine/piece/Rook'
 import type Piece from '$lib/engine/piece/Piece'
+import type Engine from '../Engine'
 
 const pieces = {
 	'p' : Pawn,
@@ -21,13 +22,13 @@ const colors = {
 }
 
 export default class PieceFactory {
-	static create(pieceString : string, board : Array<Array<Piece>>, i : number, j : number) {
+	static create(pieceString : string, engine : Engine, i : number, j : number) {
 		const colorChar = pieceString[0]
 		const pieceChar = pieceString[1]
 		if (pieceChar in pieces && colorChar in colors) {
 			const piece = pieces[pieceChar]
 			const color = colors[colorChar]
-			return new piece(color, board, i, j)
+			return new piece(color, engine, i, j)
 		}
 	}
 }

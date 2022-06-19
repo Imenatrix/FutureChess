@@ -1,3 +1,5 @@
+import type Engine from "../Engine"
+
 export default class Piece {
 
 	char = 'x'
@@ -5,11 +7,13 @@ export default class Piece {
 	color : string
 	i : number
 	j : number
+	engine : Engine
 	board : Array<Array<Piece>>
 
-	constructor(color : string, board : Array<Array<Piece>>, i : number, j : number) {
+	constructor(color : string, engine : Engine, i : number, j : number) {
 		this.color = color
-		this.board = board
+		this.engine = engine
+		this.board = engine.board
 		this.i = i
 		this.j = j
 	}

@@ -23,7 +23,7 @@ export default class Engine {
 			const row = []
 			for (let j = 0; j < unserializedRow.length; j++) {
 				const pieceString = unserializedRow[j]
-				const piece = PieceFactory.create(pieceString, this.board, i, j)
+				const piece = PieceFactory.create(pieceString, this, i, j)
 				row.push(piece)
 			}
 			this.board.push(row)
