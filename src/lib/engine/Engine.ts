@@ -14,6 +14,7 @@ const unserializedBoard = [
 
 export default class Engine {
 
+	turn : 'white' | 'black' = 'white'
 	board : Array<Array<Piece>>
 
 	constructor() {
@@ -27,6 +28,15 @@ export default class Engine {
 				row.push(piece)
 			}
 			this.board.push(row)
+		}
+	}
+
+	processTurn() {
+		if (this.turn == 'white') {
+			this.turn = 'black'
+		}
+		else {
+			this.turn = 'white'
 		}
 	}
 
