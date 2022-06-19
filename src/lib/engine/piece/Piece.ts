@@ -47,11 +47,12 @@ export default class Piece {
 	}
 
 	move(i : number, j :  number) {
-		if (this.canMove(i, j)) {
+		if (this.canMove(i, j) && this.engine.turn == this.color) {
 			this.board[this.i][this.j] = undefined
 			this.i = i
 			this.j = j
 			this.board[this.i][this.j] = this
+			this.engine.processTurn()
 			return true
 		}
 		return false
