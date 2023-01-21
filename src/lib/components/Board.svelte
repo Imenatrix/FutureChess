@@ -1,8 +1,8 @@
-<script type="typescript">
+<script lang='ts'>
 	import Piece from '$lib/components/Piece.svelte'
 	import Square from '$lib/components/Square.svelte'
 	import Target from '$lib/components/Target.svelte'
-	import type { default as VirtualPiece } from '$lib/engine/piece/Piece'
+	import type VirtualPiece from '$lib/engine/piece/Piece'
 
 	export let boardState
 

@@ -1,4 +1,4 @@
-<script type="typescript">
+<script lang='ts'>
 
 	import type Piece from '$lib/engine/piece/Piece';
 	import { createEventDispatcher, onMount } from 'svelte';
