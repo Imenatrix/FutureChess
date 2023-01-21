@@ -3,11 +3,18 @@
 	import Engine from '$lib/engine/Engine'
 
 	const engine = new Engine()
-	const boardState = engine.board
+	let boardState = engine.board
+
+	function handleMoved() {
+		boardState = boardState
+	}
+
 </script>
 
 <div class="container">
-	<Board {boardState}/>
+	<Board on:moved={handleMoved} {boardState}/>
+	<div class="spacer"></div>
+	<Board on:moved={handleMoved} {boardState}/>
 </div>
 
 <style>
@@ -17,5 +24,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.spacer {
+		width: 100px;
 	}
 </style>

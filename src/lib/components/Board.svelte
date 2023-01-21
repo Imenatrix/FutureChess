@@ -3,6 +3,9 @@
 	import Square from '$lib/components/Square.svelte'
 	import Target from '$lib/components/Target.svelte'
 	import type VirtualPiece from '$lib/engine/piece/Piece'
+	import { createEventDispatcher } from 'svelte'
+
+	const dispatch = createEventDispatcher()
 
 	export let boardState
 
@@ -13,7 +16,7 @@
 		const moved = selectedPiece.move(i, j)
 		if (moved) {
 			selectedPiece = null
-			boardState = boardState
+			dispatch('moved')
 		}
 	}
 
